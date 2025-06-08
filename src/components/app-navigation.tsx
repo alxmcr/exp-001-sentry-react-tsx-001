@@ -14,7 +14,7 @@ export function AppNavigation() {
           <NavLink
             to="/"
             className={({ isActive }: { isActive: boolean }) =>
-              isActive ? "text-yellow-300 underline" : ""
+              isActive ? "text-yellow-300 underline underline-offset-4" : ""
             }
           >
             Home
@@ -24,7 +24,7 @@ export function AppNavigation() {
           <NavLink
             to="/political-party"
             className={({ isActive }: { isActive: boolean }) =>
-              isActive ? "text-yellow-300 underline" : ""
+              isActive ? "text-yellow-300 underline underline-offset-4" : ""
             }
           >
             Political Party
