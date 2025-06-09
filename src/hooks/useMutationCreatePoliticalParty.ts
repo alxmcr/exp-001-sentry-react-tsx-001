@@ -1,8 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { PoliticalPartiesAPIImpl } from "../api/political-parties-api.impl";
 import type { PoliticalPartyDataNew } from "../types/service-types";
-import * as Sentry from "@sentry/react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export function useMutationCreatePoliticalParty() {
   const queryClient = useQueryClient();
@@ -19,10 +18,10 @@ export function useMutationCreatePoliticalParty() {
       queryClient.invalidateQueries({ queryKey: ["politicalParties"] });
       toast.success("Political party created successfully");
     },
-    onError: (error) => {
-      toast.error("Failed to create political party");
+    onError: (error: Error) => {
+      console.error(error);
 
-      Sentry.captureException(error);
+      toast.error("Failed to create political party");
     },
   });
 
