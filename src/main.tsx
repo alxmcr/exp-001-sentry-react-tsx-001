@@ -14,17 +14,21 @@ const queryClient = new QueryClient();
 
 // Sentry
 Sentry.init({
-  dsn: "https://1c5ee24e1c057702212c4953b7ccead0@o4509115337080832.ingest.us.sentry.io/4509465628901376",
-  integrations: [Sentry.browserTracingIntegration()],
+  dsn: "https://84478ebde41bedd7b7e85d463e81a31a@o4509115337080832.ingest.us.sentry.io/4509467313373184",
   // Setting this option to true will send default PII data to Sentry.
   // For example, automatic IP address collection on events
   sendDefaultPii: true,
-  // Set tracesSampleRate to 1.0 to capture 100%
-  // of transactions for performance monitoring.
-  // We recommend adjusting this value in production
-  tracesSampleRate: 1.0,
-  // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+  integrations: [
+    Sentry.browserTracingIntegration(),
+    Sentry.replayIntegration()
+  ],
+  // Tracing
+  tracesSampleRate: 1.0, //  Capture 100% of the transactions
+  // Set 'tracePropagationTargets' to control for which URLs distributed tracing should be enabled
   tracePropagationTargets: ["localhost"],
+  // Session Replay
+  replaysSessionSampleRate: 0.1, // This sets the sample rate at 10%. You may want to change it to 100% while in development and then sample at a lower rate in production.
+  replaysOnErrorSampleRate: 1.0 // If you're not already sampling the entire session, change the sample rate to 100% when sampling sessions where errors occur.
 });
 
 const container = document.getElementById("root");
