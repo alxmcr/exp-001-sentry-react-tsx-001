@@ -24,7 +24,6 @@ export function useMutationCreatePoliticalParty() {
       toast.error("Failed to create political party");
 
       Sentry.captureException(error);
-
     },
   });
 
