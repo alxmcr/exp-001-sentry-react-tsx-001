@@ -23,7 +23,13 @@ export function useMutationCreatePoliticalParty() {
       console.log({ error });
       toast.error("Failed to create political party");
 
-      Sentry.captureException(error);
+      const eventId = Sentry.captureException(error);
+      const dataError = [
+        "**Error**",
+        "There was a problem with your request.",
+        `**Event ID**: ${eventId}`,
+      ].join("\n\n");
+      console.log({ eventId, dataError });
     },
   });
 
